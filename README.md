@@ -10,8 +10,21 @@ Minimal MonoGame sample demonstrating lane-switching and sprite rendering.
 - `LaneSwitcher.csproj` — project file with MonoGame package references.
 - `Content/` — optional folder for raw assets (not checked into repo).
 
+## Requirements
+
+- .NET SDK (the project targets `net6.0`).
+- MonoGame DesktopGL packages are referenced in the project (`MonoGame.Framework.DesktopGL`).
+- A PNG sprite named `actionFigure.png` (optional; the game uses a magenta placeholder if missing).
+
+## Build & run
+
+Open `LaneSwitcherProtocol.csproj` or 'Game1.cs' in Visual Studio, set the project as the startup project, build, and run 
+
 ## Controls
 
 - Left / Right arrow keys — move lanes
 - Esc — exit
+
+## Ai usage
+Used Github copilot to identify the error and suggest a fix.
 
