@@ -31,7 +31,7 @@ namespace LaneSwitcherProtocol
 
         protected override void Initialize()
         {
-            // Initialize keyboard state to avoid NullReferenceException on first Update
+           
             previousKeyboard = Keyboard.GetState();
 
             // Create the LaneSwitcher object
@@ -44,7 +44,7 @@ namespace LaneSwitcherProtocol
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // 1) Try to load via MonoGame Content pipeline (expects an XNB with asset name "actionFigure")
+           
             try
             {
                 actionFigure = Content.Load<Texture2D>("actionFigure"); // asset name, no extension
@@ -56,7 +56,7 @@ namespace LaneSwitcherProtocol
                 Debug.WriteLine($"Content.Load failed for 'actionFigure': {ex.Message}");
             }
 
-            // 2) Fallback: attempt to load the raw PNG file from disk (works if PNG is copied to output)
+           
             try
             {
                 string[] candidates = new[]
@@ -94,7 +94,7 @@ namespace LaneSwitcherProtocol
                 Debug.WriteLine($"Failed to load actionFigure.png from disk: {ex.Message}");
             }
 
-            // 3) Final fallback: visible placeholder so the game continues to run
+      
             const int size = 64;
             actionFigure = new Texture2D(GraphicsDevice, size, size);
             var data = new Color[size * size];
@@ -112,7 +112,7 @@ namespace LaneSwitcherProtocol
             if (currentKeyboard.IsKeyDown(Keys.Escape))
                 Exit();
 
-            // Guard against laneSwitcher being null (defensive)
+          
             if (laneSwitcher != null)
             {
                 // INPUT → OBJECT MUTATORS
@@ -146,15 +146,14 @@ namespace LaneSwitcherProtocol
 
             if (actionFigure != null)
             {
-                // 1) Scale the sprite to a reasonable on-screen size
-                //    Choose target width/height in pixels and scale uniformly to preserve aspect ratio.
+               
                 const float targetWidth = 96f;
                 const float targetHeight = 128f;
                 float scaleX = targetWidth / actionFigure.Width;
                 float scaleY = targetHeight / actionFigure.Height;
                 float scale = Math.Min(scaleX, scaleY);
 
-                // 2) Draw from the sprite's center (origin) so the xPosition/yPosition represent the sprite center
+              
                 Vector2 origin = new Vector2(actionFigure.Width * 0.5f, actionFigure.Height * 0.5f);
 
                 _spriteBatch.Draw(
